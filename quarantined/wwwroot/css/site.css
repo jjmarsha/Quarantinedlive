@@ -1,0 +1,136 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #f9fafb
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+.logo_q {
+    width: 280px;
+    margin-top: 10px;
+}
+
+.q_primaryColor {
+    background-color: #fafbfc;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(8,10,37,.03), 
+        0 0.9375rem 1.40625rem rgba(8,10,37,.03), 
+        0 0.25rem 0.53125rem rgba(8,10,37,.05), 
+        0 0.125rem 0.1875rem rgba(8,10,37,.03);
+}
+
+.has-search .form-control {
+    padding-left: 4.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.Search-icon {
+    width: 20px;
+    position: absolute;
+    z-index: 2;
+    margin-top: 7px;
+    margin-left: 7px;
+}
+.Add-icon {
+    width: 25px;
+    position: absolute;
+    z-index: 3;
+    margin-left: -33px;
+    margin-top: -3px;
+}
+.Add-button {
+    background-color: #545cd8;
+    border: none;
+    width: 125px;
+    padding: 7px 0px 7px 0px;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.div-card {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(8,10,37,.03),
+        0 0.9375rem 1.40625rem rgba(8,10,37,.03), 
+        0 0.25rem 0.53125rem rgba(8,10,37,.05), 
+        0 0.125rem 0.1875rem rgba(8,10,37,.03);
+    padding: 1%;
+}
+.btn-categories {
+    margin-right: 15px;
+    border: 1px solid #d92550;
+    border-radius: 5px;
+    padding: 2px 20px 2px 20px;
+    transition: color .15s,background-color .15s,border-color .15s,box-shadow .15s;
+}
+    .btn-categories:hover {
+        background-color: #d92550;
+        color: white;
+    }
+.btn-categories-more {
+    background-color: unset;
+    border: none;
+    outline: none
+}
+.menu-categories {
+    width: 20px
+}
+
+.div-card-live {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(8,10,37,.03), 0 0.9375rem 1.40625rem rgba(8,10,37,.03), 0 0.25rem 0.53125rem rgba(8,10,37,.05), 0 0.125rem 0.1875rem rgba(8,10,37,.03);
+    padding: 1%;
+    height: 700px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.card-live {
+    padding: 10px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(8,10,37,.03), 0 0.9375rem 1.40625rem rgba(8,10,37,.03), 0 0.25rem 0.53125rem rgba(8,10,37,.05), 0 0.125rem 0.1875rem rgba(8,10,37,.03);
+}
+
+.live-circle {
+    width: 27px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
