@@ -1,0 +1,11 @@
+.circular-input-field-left {
+    border-radius: 50px 0% 0% 50px !important;
+}
+
+.circular-input-field {
+    border-radius: 20px !important;
+}
+
+.circular-input-field-button-right {
+    border-radius: 0 50px 50px 0 !important;
+}
