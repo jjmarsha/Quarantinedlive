@@ -1,6 +1,6 @@
 export const EntryExamples = [
     {
-        title: "Title of the event",
+        title: " Title of the event the event Title of the event the event",
         hostName: "Name of host",
         date: "April 8, 2020",
         topics: [

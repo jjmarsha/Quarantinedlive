@@ -7,9 +7,9 @@ const SearchBar = (props) => {
     return(
         <div>
             <InputGroup>
-                <Input className="circular-input-field-left" placeholder=" Search"/>
+                <Input placeholder=" Search"/>
                 <InputGroupAddon addonType="append">
-                    <Button className="circular-input-field-button-right">
+                    <Button>
                         <i className="fa fa-search"/>
                     </Button>
                 </InputGroupAddon>

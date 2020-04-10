@@ -1,13 +1,12 @@
 .tag {
     border: solid 1px #a5a5a5;
     color: #505050;
-    border-radius: 20px;
     height: 70%;
     margin: auto;
     font-size: 13px;
     padding: 5px 10px 5px 10px;
 }
 
-.tag:hover {
+.tag-normal:hover {
     cursor: pointer;
 }

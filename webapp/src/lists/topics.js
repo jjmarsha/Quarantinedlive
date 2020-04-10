@@ -1,0 +1,25 @@
+const Topics = [
+    "Concerts",
+    "Covid-19",
+    "Education",
+    "Fitness",
+    "Religion",
+    "Games",
+    "Comedy",
+    "Emotional Support",
+    "Tech",
+    "Kids",
+    "Parents",
+    "Film/Movies",
+    "Career & Business",
+    "Politics",
+    "Teenagers",
+    "Dating",
+    "Party",
+    "Yoga/Meditation",
+    "Art & Writing",
+    "Food/Cooking",
+    "Health",
+];
+
+export default Topics;
