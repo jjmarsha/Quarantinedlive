@@ -27,7 +27,7 @@ class Navigation extends React.Component {
                         <SearchBar/>
                     </Col>
                 </Row>
-                <TrendingSection modalToggle={this.props.modalToggle}/>
+                <TrendingSection modalToggle={this.props.modalToggle} isMobile={this.props.isMobile}/>
             </>
         );
     }

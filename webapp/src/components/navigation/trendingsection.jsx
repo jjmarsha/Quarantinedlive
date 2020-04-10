@@ -11,23 +11,21 @@ class TrendingSection extends React.Component {
         }
     }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.handleWindowSizeChange);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleWindowSizeChange);
-    }
-
-    handleWindowSizeChange = () => {
-        this.setState({ width: window.innerWidth });
-    };
-
     render() {
-        const isMobile = (this.state.width <= 700);
-        if(isMobile) {
+        
+        if(this.props.isMobile) {
             return(
-                <></>
+                <Row className="mt-3">         
+                    <Col xs="0" md="12" lg="2" className="d-flex justify-content-end">
+                        <Button 
+                            onClick={this.props.modalToggle}
+                            className="mt-auto mb-auto w-100 d-flex justify-content-between"
+                        >
+                            Add New	&nbsp;
+                            <i className="mt-auto mb-auto fa fa-plus"/>
+                        </Button>
+                    </Col>
+                </Row>
             );
         } else {
             return(

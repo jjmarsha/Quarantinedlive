@@ -7,7 +7,7 @@ import Entry from "../components/entry/entry";
 import Filter from "../components/filter/filter"
 import EntryForm from "../components/forms/entryform";
 import "../styles/formfields.css";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class Homepage extends React.Component {
     constructor(props) {
@@ -18,13 +18,22 @@ class Homepage extends React.Component {
     }
 
     componentDidMount() {
-
+        window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowSizeChange);
+    }
+
+    handleWindowSizeChange = () => {
+        this.setState({ width: window.innerWidth });
+    };
+
     render() {
+        const isMobile = (this.state.width <= 700);
         return(
             <Page>
-                <Navigation modalToggle={this.modalToggle}/>
+                <Navigation modalToggle={this.modalToggle} isMobile={isMobile}/>
                 <Row>
                     <Col xs="0" md="3">
                         <Filter/>
@@ -37,6 +46,7 @@ class Homepage extends React.Component {
                                         className="mt-3 mb-3 entry-hover-cursor"
                                         entry={entry}
                                         key={key}
+                                        isMobile={isMobile}
                                     />
                                 );
                             })

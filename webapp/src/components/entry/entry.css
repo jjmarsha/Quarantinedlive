@@ -5,6 +5,14 @@
     border: solid 1px #949494;
 }
 
+.entry-mobile {
+    width: 100%;
+    height: 160px;
+    color: #575656;
+    border: solid 1px #bbbbbb;
+    box-shadow: 2px 2px 2px 2px rgba(204, 204, 204, 0.2);
+}
+
 .entry-text {
     margin-bottom: 0rem !important;
 }
