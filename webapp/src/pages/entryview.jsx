@@ -4,6 +4,7 @@ import Page from "./page";
 import { Row, Col } from "reactstrap";
 import Navigation from "../components/navigation/navigation";
 import Rising from "../static/88.jpg";
+import TrendingSection from "../components/navigation/trendingsection";
 
 
 class EntryView extends React.Component {

@@ -2,7 +2,6 @@ import React from "react";
 import SearchBar from "../searchbar/searchbar";
 import { Row , Col, Button } from "reactstrap";
 import Tag from "../tag/tag";
-import TrendingSection from "./trendingsection"
 
 
 class Navigation extends React.Component {
@@ -27,7 +26,6 @@ class Navigation extends React.Component {
                         <SearchBar/>
                     </Col>
                 </Row>
-                <TrendingSection modalToggle={this.props.modalToggle} isMobile={this.props.isMobile}/>
             </>
         );
     }

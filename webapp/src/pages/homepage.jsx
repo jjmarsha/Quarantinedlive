@@ -6,6 +6,7 @@ import {EntryExamples} from "../components/entry/entryexamples";
 import Entry from "../components/entry/entry";
 import Filter from "../components/filter/filter"
 import EntryForm from "../components/forms/entryform";
+import TrendingSection from "../components/navigation/trendingsection";
 import "../styles/formfields.css";
 import { withRouter } from "react-router-dom";
 
@@ -34,6 +35,7 @@ class Homepage extends React.Component {
         return(
             <Page>
                 <Navigation modalToggle={this.modalToggle} isMobile={isMobile}/>
+                <TrendingSection modalToggle={this.modalToggle} isMobile={isMobile}/>
                 <Row>
                     <Col xs="0" md="3">
                         <Filter/>
