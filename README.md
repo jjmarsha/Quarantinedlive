@@ -1,5 +1,5 @@
 # Quarantined.live
-![Docker Image CI](https://github.com/eddyv73/Quarantinedlive/workflows/Docker%20Image%20CI/badge.svg?branch=feature%2Fdb)
+![Quarantined CI](https://github.com/eddyv73/Quarantinedlive/workflows/Quarantined%20CI/badge.svg?branch=feature%2Fdb)
 ## Overview
 
 Welcome to our open source community. 
