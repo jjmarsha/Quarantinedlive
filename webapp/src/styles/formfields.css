@@ -1,11 +1,19 @@
 .circular-input-field-left {
-    border-radius: 50px 0% 0% 50px !important;
+  border-radius: 50px 0% 0% 50px !important;
 }
 
 .circular-input-field {
-    border-radius: 20px !important;
+  border-radius: 20px !important;
 }
 
 .circular-input-field-button-right {
-    border-radius: 0 50px 50px 0 !important;
+  border-radius: 0 50px 50px 0 !important;
+}
+
+.input-field-height {
+  height: calc(1.5em + 0.75rem + 2px);
+}
+
+.input-field-grey-border {
+  border: 1px solid #ced4da !important;
 }

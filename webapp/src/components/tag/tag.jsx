@@ -1,12 +1,12 @@
 import React from "react";
 import "./tag.css";
 
-const Tag = ({placename, className}) => {
-    return(
-        <div className={"tag " + className}>
-            {placename}
-        </div>
-    )
-}
+const Tag = ({ placename, className, onClick }) => {
+  return (
+    <div onClick={onClick} title={placename} className={"tag " + className}>
+      {placename}
+    </div>
+  );
+};
 
 export default Tag;

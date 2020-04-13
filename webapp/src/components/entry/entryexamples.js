@@ -1,100 +1,98 @@
 export const EntryExamples = [
-    {
-        title: " Title of the event the event Title of the event the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },
-    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },    {
-        title: "Title of the event",
-        hostName: "Name of host",
-        date: "April 8, 2020",
-        topics: [
-            "COVID-19", "Moms", "Things-to-do",
-        ],
-        active: true,
-    },
-]
+  {
+    id: 1,
+    title: " Title of the event the event Title of the event the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 2,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 3,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 4,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 5,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 6,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 7,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 8,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 9,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 10,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 11,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+  {
+    id: 11,
+    title: "Title of the event",
+    nameofhost: "Name of host",
+    date: "April 8, 2020",
+    topics: ["Covid-19", "Education", "Games"],
+    active: true,
+  },
+];
