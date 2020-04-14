@@ -3,6 +3,7 @@ import Loading from "../../common/loading";
 import Entry from "./entry";
 import { useSelector, useDispatch } from "react-redux";
 import { SetLoadingStatus } from "../../actions/index";
+import { useEffect } from "react";
 
 export const SetLoadingHandler = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,8 @@ export const SetLoadingHandler = () => {
 
 const EntryList = ({ entries, isMobile }) => {
   const loading = useSelector((state) => state.uiStatus.loading);
+  useEffect(() =>{
+  }, [])
   return (
     <>
       {!loading ? (

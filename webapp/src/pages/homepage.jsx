@@ -12,6 +12,7 @@ import { withRouter } from "react-router-dom";
 import { isMobile } from "react-device-detect";
 import { GetURLParams } from "../common/urlparser";
 import Loading from "../common/loading";
+import axios from "axios";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -25,11 +26,9 @@ class Homepage extends React.Component {
   }
 
   async componentDidMount() {
-    const entries = EntryExamples;
     this.GetEntries();
     this.setState({
       loadingComponents: true,
-      entries: entries,
       currURL: this.props.history.location.search,
     });
   }
@@ -42,10 +41,15 @@ class Homepage extends React.Component {
   }
 
   GetEntries = async (url) => {
-    const params = GetURLParams();
-    const keywords = params.keywords.split(",");
-    setTimeout(function () {}, 3000);
-    //Make the ajax call here
+    // const params = GetURLParams();
+    // let keywords;
+    // if(params.keywords) keywords = params.keywords.split(",");
+    // Make the ajax call here
+    axios
+      .get("http://quarantined.azurewebsites.net/api/Event/")
+      .then(resp => {
+        this.setState({entries: resp.data});
+      })
   };
 
   render() {

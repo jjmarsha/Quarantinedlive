@@ -14,8 +14,8 @@ import Language from "../../lists/languages";
 import CustomDropdown from "../filter/dropdown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ParseDateString, ParseTimeString } from "../../lists/daterefs";
-import "../../styles/formfields.css";
+import {ParseUTCToBackend } from "../../lists/daterefs";
+import axios from "axios";
 
 /*
     I made the horrible mistake of writing this as a functional component
@@ -52,21 +52,31 @@ const EntryForm = (props) => {
 
   const submitForm = () => {
     if (!validateForm()) return;
-    let dateString =
-      ParseDateString(String(date)) + " " + ParseTimeString(String(time));
+    const parsedDate = ParseUTCToBackend(date.toString(), time.toString());
     const Topics = [];
     if (topic1) Topics.push(topic1);
     if (topic2) Topics.push(topic2);
     if (topic3) Topics.push(topic3);
     const entry = {
       title: title,
-      hostName: hostname,
-      date: dateString,
+      nameofhost: hostname,
+      email_of_host: email,
       topics: Topics,
-      active: true,
+      link: link,
+      language: language,
+      time: parsedDate,
+      description: description,
+      image_url: image,
+      type: type,
     };
-    props.onSubmit(entry);
-    props.modalToggle();
+    axios.post("http://quarantined.azurewebsites.net/api/Event/", entry,
+    {
+      
+    }).then((resp) => {
+        props.onSubmit(entry);
+        props.modalToggle();
+    })
+
   };
 
   const validateForm = () => {

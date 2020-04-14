@@ -5,16 +5,28 @@ import { Row, Col } from "reactstrap";
 import Navigation from "../components/navigation/navigation";
 import Rising from "../static/88.jpg";
 import TrendingSection from "../components/navigation/trendingsection";
+import axios from "axios";
+import Loading from "../common/loading";
 
 class EntryView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      entry: undefined,
+    };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const id = this.props.history.location.pathname.substring("/view/".length);
+    axios
+    .get(`http://quarantined.azurewebsites.net/api/Event/${id}`)
+    .then(resp => {
+      this.setState({entry: resp.data})
+    })
+  }
 
   render() {
+    if(!this.state.entry) return <Loading/>
     return (
       <Page>
         <Navigation />
@@ -31,15 +43,9 @@ class EntryView extends React.Component {
             <p>Language</p>
             <p>Description</p>
             <p>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
+              {this.state.entry.description}
             </p>
-            <a href="https://google.com">Link to event</a>
+            <a href={this.state.entry.link}>Link to event</a>
           </Col>
         </Row>
       </Page>

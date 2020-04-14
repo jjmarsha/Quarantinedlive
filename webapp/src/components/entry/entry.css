@@ -30,3 +30,15 @@
     height: 100px;
   }
 }
+
+.border-left-success {
+  border-left: 6px solid green;
+}
+
+.border-left-warning {
+  border-left: 6px solid yellow;
+}
+
+.border-left-danger { 
+  border-left: 6px solid red;
+}
