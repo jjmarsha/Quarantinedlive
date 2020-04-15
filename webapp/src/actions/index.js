@@ -5,6 +5,19 @@ export const SetTimeZone = (timezone) => {
   };
 };
 
+export const SetDateFilter = (date) => {
+  return {
+    type: "SET_DATE",
+    dateFilter: date,
+  };
+};
+
+export const RemoveDateFilter = () => {
+  return {
+    type: "REMOVE_DATE",
+  };
+};
+
 export const SetFilters = (filters) => {
   return {
     type: "ALTER_FILTERS",

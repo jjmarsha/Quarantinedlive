@@ -13,6 +13,8 @@ import { isMobile } from "react-device-detect";
 import { GetURLParams } from "../common/urlparser";
 import Loading from "../common/loading";
 import axios from "axios";
+import EntryList from "../components/entry/entrylist";
+import store from "../redux/store";
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -26,7 +28,7 @@ class Homepage extends React.Component {
   }
 
   async componentDidMount() {
-    this.GetEntries();
+    await this.GetEntries();
     this.setState({
       loadingComponents: true,
       currURL: this.props.history.location.search,
@@ -47,9 +49,9 @@ class Homepage extends React.Component {
     // Make the ajax call here
     axios
       .get("http://quarantined.azurewebsites.net/api/Event/")
-      .then(resp => {
-        this.setState({entries: resp.data});
-      })
+      .then((resp) => {
+        this.setState({ entries: resp.data });
+      });
   };
 
   render() {
@@ -62,20 +64,7 @@ class Homepage extends React.Component {
             <Filter />
           </Col>
           <Col xs="12" md="9">
-            {this.state.loadingComponents ? (
-              this.state.entries.map((entry, key) => {
-                return (
-                  <Entry
-                    className="mt-3 mb-3 entry-hover-cursor rounded"
-                    entry={entry}
-                    key={key}
-                    isMobile={isMobile}
-                  />
-                );
-              })
-            ) : (
-              <Loading />
-            )}
+            <EntryList isMobile={isMobile} entrylist={this.state.entries} />
           </Col>
         </Row>
         <Modal isOpen={this.state.modalIsOpen} toggle={this.modalToggle}>

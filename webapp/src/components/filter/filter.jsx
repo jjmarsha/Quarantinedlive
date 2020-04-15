@@ -14,7 +14,8 @@ import "./filter.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector, useDispatch } from "react-redux";
-import { SetFilters } from "../../actions/index";
+import { SetFilters, SetDateFilter } from "../../actions/index";
+import { ParseUTCToBackend } from "../../lists/daterefs";
 
 const modifiers = {
   setMaxHeight: {
@@ -60,6 +61,12 @@ const Filter = (props) => {
         break;
       }
     }
+  };
+
+  const addDate = (date) => {
+    setDate(date);
+    const parsedDate = ParseUTCToBackend(date.toString(), "00:00:00");
+    dispatchFilters(SetDateFilter(parsedDate));
   };
 
   return (
@@ -131,7 +138,7 @@ const Filter = (props) => {
               wrapperClassName="w-100 border rounded"
               placeholderText="Select date..."
               selected={date}
-              onChange={(date) => setDate(date)}
+              onChange={addDate}
             />
           </Col>
         </Row>

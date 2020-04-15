@@ -14,7 +14,7 @@ import Language from "../../lists/languages";
 import CustomDropdown from "../filter/dropdown";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {ParseUTCToBackend } from "../../lists/daterefs";
+import { ParseUTCToBackend } from "../../lists/daterefs";
 import axios from "axios";
 
 /*
@@ -69,14 +69,12 @@ const EntryForm = (props) => {
       image_url: image,
       type: type,
     };
-    axios.post("http://quarantined.azurewebsites.net/api/Event/", entry,
-    {
-      
-    }).then((resp) => {
+    axios
+      .post("http://quarantined.azurewebsites.net/api/Event/", entry, {})
+      .then((resp) => {
         props.onSubmit(entry);
         props.modalToggle();
-    })
-
+      });
   };
 
   const validateForm = () => {
