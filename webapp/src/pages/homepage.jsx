@@ -48,7 +48,7 @@ class Homepage extends React.Component {
     // if(params.keywords) keywords = params.keywords.split(",");
     // Make the ajax call here
     axios
-      .get("http://quarantined.azurewebsites.net/api/Event/")
+      .get("https://quarantined.azurewebsites.net/api/Event/")
       .then((resp) => {
         this.setState({ entries: resp.data });
       });

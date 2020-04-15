@@ -70,10 +70,10 @@ const EntryForm = (props) => {
       type: type,
     };
     axios
-      .post("http://quarantined.azurewebsites.net/api/Event/", entry, {})
+      .post("https://quarantined.azurewebsites.net/api/Event/", entry, {})
       .then((resp) => {
-        props.onSubmit(entry);
         props.modalToggle();
+        window.location.reload();
       });
   };
 
@@ -189,16 +189,28 @@ const EntryForm = (props) => {
           value={type}
         />
       </FormGroup>
-      <FormGroup>
-        <Input
-          placeholder="Link"
-          className=""
-          onChange={(e) => setLink(e.target.value)}
-          value={link}
-          invalid={linkError}
-        />
-        <FormFeedback>Please provide a link to the event</FormFeedback>
-      </FormGroup>
+      <Row>
+        <Col md="7">
+          <FormGroup>
+            <Input
+              placeholder="Link to the event..."
+              className=""
+              onChange={(e) => setLink(e.target.value)}
+              value={link}
+              invalid={linkError}
+            />
+            <FormFeedback>Please provide a link to the event</FormFeedback>
+          </FormGroup>
+        </Col>
+        <Col md="5">
+          <Input
+            type="text"
+            placeholder="Link to an image..."
+            onChange={(e) => setImage(e.target.value)}
+            value={image}
+          />
+        </Col>
+      </Row>
       <Row>
         <Col md="4" xs="12">
           <FormGroup>
@@ -252,16 +264,6 @@ const EntryForm = (props) => {
         />
         <FormFeedback>Please provide a short description</FormFeedback>
       </FormGroup>
-      <Row>
-        <Col md="12">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
-          />
-        </Col>
-      </Row>
       <div className="float-right">
         <Button className="mr-1" onClick={props.modalToggle}>
           Cancel

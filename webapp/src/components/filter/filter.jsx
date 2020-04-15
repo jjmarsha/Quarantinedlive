@@ -71,12 +71,21 @@ const Filter = (props) => {
 
   const addDate = (date) => {
     setDate(date);
+    if (!date) {
+      dispatchFilters(SetDateFilter(undefined));
+      return;
+    }
     const parsedDate = ParseUTCToBackend(date.toString(), "00:00:00");
     dispatchFilters(SetDateFilter(parsedDate));
   };
 
   const handleLanguage = (event) => {
     const language = event.target.value;
+    if (language === "-- None --") {
+      setLanguage(undefined);
+      dispatchFilters(SetLanguageFilter(undefined));
+      return;
+    }
     setLanguage(language);
     dispatchFilters(SetLanguageFilter(language));
   };

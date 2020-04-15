@@ -15,19 +15,21 @@ class EntryView extends React.Component {
     this.state = {
       entry: undefined,
       parsedDateString: "",
+      href: "",
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const id = this.props.history.location.pathname.substring("/view/".length);
-    axios
-      .get(`http://quarantined.azurewebsites.net/api/Event/${id}`)
+    await axios
+      .get(`https://quarantined.azurewebsites.net/api/Event/${id}`)
       .then((resp) => {
         this.setState({
           entry: resp.data,
           parsedDateString: this.ParseDate(resp.data),
         });
       });
+    await this.handleRedirect();
   }
 
   ParseDate = (entry) => {
@@ -38,22 +40,38 @@ class EntryView extends React.Component {
       )}`;
   };
 
+  handleRedirect = async () => {
+    const link = this.state.entry.link;
+    if (link.startsWith("https://") || link.startsWith("http://")) {
+      this.setState({ href: link });
+    } else {
+      this.setState({ href: `http://${link}` });
+    }
+  };
+
   render() {
     if (!this.state.entry) return <Loading />;
     return (
       <Page>
         <Navigation />
         <Row className="mt-5 text-left">
-          <Col md="12" className="text-center">
-            <img src={Rising} width="100%" />
-          </Col>
+          {this.state.entry.image_url ? (
+            <Col md="12" className="text-center">
+              <img src={this.state.entry.image_url} width="100%" />
+            </Col>
+          ) : null}
           <Col md="12" className="mt-5">
-            <h4>Title of the event</h4>
-            <br />
-            <p>Name of host: {this.state.entry.nameofhost}</p>
-            <p>Date: {this.state.parsedDateString}</p>
-            <p>
-              Topics:{" "}
+            <h3 className="font-weight-normal">{this.state.entry.title}</h3>
+            <div className="pt-3">
+              <div className="d-inline font-weight-bold">Name of host: </div>
+              {this.state.entry.nameofhost}
+            </div>
+            <div className="pt-3">
+              <div className="d-inline font-weight-bold">Date: </div>
+              {this.state.parsedDateString}
+            </div>
+            <div className="pt-3">
+              <div className="d-inline font-weight-bold">Topics: </div>
               {this.state.entry.topics
                 ? this.state.entry.topics.map((topic, key) => {
                     return (
@@ -63,11 +81,16 @@ class EntryView extends React.Component {
                     );
                   })
                 : null}
-            </p>
-            <p>Language: {this.state.entry.language}</p>
-            <p>Description: </p>
+            </div>
+            <div className="pt-3">
+              <div className="d-inline font-weight-bold">Language: </div>
+              {this.state.entry.language}
+            </div>
+            <div className="pt-3 pb-1">
+              <p className="d-inline font-weight-bold">Description: </p>
+            </div>
             <p>{this.state.entry.description}</p>
-            <a href={this.state.entry.link}>Link to event</a>
+            <a href={this.state.href}>Link to Event</a>
           </Col>
         </Row>
       </Page>
