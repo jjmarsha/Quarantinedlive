@@ -12,20 +12,25 @@ export const SetLoadingHandler = () => {
   dispatch(SetLoadingStatus());
 };
 
-const EntryList = ({ isMobile, entrylist, filters, dateFilter }) => {
+const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
   const parentRef = useRef();
   const loading = useSelector((state) => state.uiStatus.loading);
   const [entries, setEntries] = useState(undefined);
 
   useEffect(() => {
     let newEntryList = [];
-    if (filters.filters.length !== 0 || dateFilter.dateFilter) {
+    if (
+      filters.filters.length !== 0 ||
+      dateFilter.dateFilter ||
+      language.language
+    ) {
       for (const element of entrylist) {
         if (element.topics) {
           for (const topic of element.topics) {
             if (
-              CompareFilters(topic, element.language) &&
-              CompareDate(element.time)
+              CompareFilters(topic) &&
+              CompareDate(element.time) &&
+              CompareLanguage(element.language)
             ) {
               newEntryList.push(element);
               break;
@@ -40,7 +45,7 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter }) => {
       if (a.time) return new Date(b.time) - new Date(a.time);
     });
     setEntries(newEntryList);
-  }, [entrylist, filters, dateFilter]);
+  }, [entrylist, filters, dateFilter, language]);
 
   const CompareDate = (date) => {
     if (!dateFilter.dateFilter) return true;
@@ -56,11 +61,14 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter }) => {
     return false;
   };
 
-  const CompareFilters = (topic, language) => {
+  const CompareFilters = (topic) => {
     if (filters.filters.length === 0) return true;
-    return (
-      filters.filters.includes(topic) || filters.filters.includes(language)
-    );
+    return filters.filters.includes(topic);
+  };
+
+  const CompareLanguage = (elementLang) => {
+    if (!language.language) return true;
+    return elementLang === language.language;
   };
 
   return (
@@ -87,6 +95,7 @@ const mapStateToProps = (state) => {
   return {
     filters: state.filters,
     dateFilter: state.dateFilter,
+    language: state.language,
   };
 };
 

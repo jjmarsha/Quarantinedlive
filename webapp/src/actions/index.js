@@ -18,6 +18,13 @@ export const RemoveDateFilter = () => {
   };
 };
 
+export const SetLanguageFilter = (language) => {
+  return {
+    type: "SET_LANG",
+    language: language,
+  };
+};
+
 export const SetFilters = (filters) => {
   return {
     type: "ALTER_FILTERS",

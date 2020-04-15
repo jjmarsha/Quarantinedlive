@@ -2,7 +2,7 @@ const intitialFilterState = {
   filters: [],
 };
 
-const FiltersReducer = (state = intitialFilterState, action) => {
+export const FiltersReducer = (state = intitialFilterState, action) => {
   switch (action.type) {
     case "ALTER_FILTERS":
       return {
@@ -13,4 +13,17 @@ const FiltersReducer = (state = intitialFilterState, action) => {
   }
 };
 
-export default FiltersReducer;
+const initialLanguageState = {
+  language: undefined,
+};
+
+export const LanguageReducer = (state = initialLanguageState, action) => {
+  switch (action.type) {
+    case "SET_LANG":
+      return {
+        language: action.language,
+      };
+    default:
+      return state;
+  }
+};

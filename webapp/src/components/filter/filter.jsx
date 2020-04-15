@@ -14,8 +14,14 @@ import "./filter.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useSelector, useDispatch } from "react-redux";
-import { SetFilters, SetDateFilter } from "../../actions/index";
+import {
+  SetFilters,
+  SetDateFilter,
+  SetLanguageFilter,
+} from "../../actions/index";
 import { ParseUTCToBackend } from "../../lists/daterefs";
+import CustomDropdown from "./dropdown";
+import "../../styles/formfields.css";
 
 const modifiers = {
   setMaxHeight: {
@@ -36,7 +42,7 @@ const modifiers = {
 
 const Filter = (props) => {
   const [topicIsOpen, setTopicIsOpen] = React.useState(false);
-  const [languageIsOpen, setLanguageIsOpen] = React.useState(false);
+  const [language, setLanguage] = React.useState(undefined);
   const [date, setDate] = React.useState(undefined);
   const filters = useSelector((state) => state.filters);
   const dispatchFilters = useDispatch();
@@ -67,6 +73,12 @@ const Filter = (props) => {
     setDate(date);
     const parsedDate = ParseUTCToBackend(date.toString(), "00:00:00");
     dispatchFilters(SetDateFilter(parsedDate));
+  };
+
+  const handleLanguage = (event) => {
+    const language = event.target.value;
+    setLanguage(language);
+    dispatchFilters(SetLanguageFilter(language));
   };
 
   return (
@@ -104,38 +116,20 @@ const Filter = (props) => {
         </Row>
         <Row className="mt-4 mb-4">
           <Col md="12">
-            <Dropdown
-              isOpen={languageIsOpen}
-              toggle={(e) => setLanguageIsOpen(!languageIsOpen)}
-              direction="down"
-            >
-              <DropdownToggle
-                className="topic w-100 d-flex justify-content-between m-auto align-items-center"
-                caret
-              >
-                Language
-              </DropdownToggle>
-              <DropdownMenu className="w-100" modifiers={modifiers}>
-                {Language.map((language, key) => {
-                  return (
-                    <DropdownItem
-                      title={language}
-                      onClick={addFilter}
-                      key={key}
-                    >
-                      {language}
-                    </DropdownItem>
-                  );
-                })}
-              </DropdownMenu>
-            </Dropdown>
+            <CustomDropdown
+              className="w-100"
+              list={Language}
+              placeholder="Select Language..."
+              value={language}
+              onChange={handleLanguage}
+            />
           </Col>
         </Row>
         <Row className="mt-4 mb-4">
           <Col md="12">
             <DatePicker
-              className="w-100 border rounded pl-2 pt-1 pb-1 text-muted"
-              wrapperClassName="w-100 border rounded"
+              className="w-100 border rounded pl-2 pt-1 pb-1 text-muted input-field-grey-border input-field-height"
+              wrapperClassName="w-100"
               placeholderText="Select date..."
               selected={date}
               onChange={addDate}
