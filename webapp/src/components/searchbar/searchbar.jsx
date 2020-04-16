@@ -7,12 +7,12 @@ const SearchBar = (props) => {
   const [search, setSearch] = useState("");
   const submitSearch = () => {
     let url = "?keywords=";
-    const keywords = search.split(" ");
-    for (const keyword of keywords) {
-      url += keyword + ",";
-    }
-    const newURL = url.slice(0, -1);
-    props.history.push(`/${newURL}`);
+    // const keywords = search.split(" ");
+    // for (const keyword of keywords) {
+    //   url += keyword + ",";
+    // }
+    // const newURL = url.slice(0, -1);
+    props.history.push(`/${search}`);
   };
   return (
     <div>

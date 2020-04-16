@@ -1,12 +1,17 @@
 .tag {
-    border: solid 1px #a5a5a5;
-    color: #505050;
-    height: 70%;
-    margin: auto;
-    font-size: 13px;
-    padding: 5px 10px 5px 10px;
+  border: solid 1px #a5a5a5;
+  color: #505050;
+  height: 70%;
+  margin: auto;
+  font-size: 13px;
+  padding: 5px 10px 5px 10px;
 }
 
-.tag-normal:hover {
+@media only screen and (min-width: 700px) {
+  .tag-normal:hover {
     cursor: pointer;
+    background-color: rgb(0, 0, 54);
+    color: white;
+    border-color: white;
+  }
 }

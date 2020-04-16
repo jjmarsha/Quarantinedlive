@@ -13,7 +13,6 @@ export const SetLoadingHandler = () => {
 };
 
 const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
-  const parentRef = useRef();
   const loading = useSelector((state) => state.uiStatus.loading);
   const [entries, setEntries] = useState(undefined);
 
@@ -42,7 +41,7 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
       newEntryList = entrylist;
     }
     newEntryList.sort((a, b) => {
-      if (a.time) return new Date(b.time) - new Date(a.time);
+      if (a.time) return new Date(a.time) - new Date(b.time);
     });
     setEntries(newEntryList);
   }, [entrylist, filters, dateFilter, language]);
@@ -73,7 +72,7 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
 
   return (
     <React.Fragment>
-      {!loading && entries ? (
+      {entries ? (
         entries.map((entry, key) => {
           return (
             <Entry

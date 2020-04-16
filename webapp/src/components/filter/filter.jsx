@@ -6,6 +6,7 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
+  Button,
 } from "reactstrap";
 import Language from "../../lists/languages";
 import Topics from "../../lists/topics";
@@ -42,13 +43,14 @@ const modifiers = {
 
 const Filter = (props) => {
   const [topicIsOpen, setTopicIsOpen] = React.useState(false);
-  const [language, setLanguage] = React.useState(undefined);
+  const [language, setLanguage] = React.useState("Language");
   const [date, setDate] = React.useState(undefined);
   const filters = useSelector((state) => state.filters);
   const dispatchFilters = useDispatch();
+  const [filterButtonState, setfilterButtonState] = React.useState(false);
 
   const addFilter = (event) => {
-    const filterName = event.currentTarget.title;
+    const filterName = event.currentTarget.title || event.currentTarget.value;
     const filtersList = filters.filters;
     if (!filtersList.includes(filterName)) {
       filtersList.push(filterName);
@@ -91,16 +93,52 @@ const Filter = (props) => {
   };
 
   return (
-    <Row className="mt-2 text-left">
+    <Row
+      className={
+        "mt-2 text-left " +
+        (props.isMobile
+          ? "filter-container-mobile" + (filterButtonState ? "-open " : "")
+          : "")
+      }
+    >
       <Col md="12">
-        <Row>
-          <Col md="12">
-            <div style={{ fontSize: "20px", fontWeight: 300 }}>Filters</div>
+        <Row className="pt-1">
+          <Col xs="3" md="12">
+            <div style={{ fontSize: "30px", fontWeight: 300 }}>Filters</div>
           </Col>
+          {props.isMobile ? (
+            <>
+              <Col xs="4" className="mt-auto mb-auto">
+                <Button
+                  className=" d-flex align-items-center"
+                  onClick={() => setfilterButtonState(!filterButtonState)}
+                >
+                  <div>
+                    <i
+                      className={
+                        "fa fa-caret" + (filterButtonState ? "-up" : "-down")
+                      }
+                    ></i>
+                  </div>
+                </Button>
+              </Col>
+              <Col xs="5" className="d-flex justify-content-end">
+                <Button
+                  onClick={props.modalToggle}
+                  className="float-right mt-auto mb-auto"
+                >
+                  Add New &nbsp;
+                  <i className="fa fa-plus" />
+                </Button>
+              </Col>
+            </>
+          ) : (
+            ""
+          )}
         </Row>
         <Row className="mt-2 mb-4">
           <Col md="12">
-            <Dropdown
+            {/* <Dropdown
               isOpen={topicIsOpen}
               toggle={(e) => setTopicIsOpen(!topicIsOpen)}
               direction="down"
@@ -109,7 +147,7 @@ const Filter = (props) => {
                 className="topic w-100 d-flex justify-content-between m-auto align-items-center"
                 caret
               >
-                Topics
+                Topic
               </DropdownToggle>
               <DropdownMenu className="w-100" modifiers={modifiers}>
                 {Topics.map((topic, key) => {
@@ -120,26 +158,30 @@ const Filter = (props) => {
                   );
                 })}
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
+            <CustomDropdown
+              className="w-100"
+              list={Topics}
+              placeholder="Topic"
+              onChange={addFilter}
+            ></CustomDropdown>
           </Col>
         </Row>
         <Row className="mt-4 mb-4">
-          <Col md="12">
+          <Col className="mb-4" xs="6" md="12">
             <CustomDropdown
               className="w-100"
               list={Language}
-              placeholder="Select Language..."
+              placeholder="Language"
               value={language}
               onChange={handleLanguage}
             />
           </Col>
-        </Row>
-        <Row className="mt-4 mb-4">
-          <Col md="12">
+          <Col xs="6" md="12">
             <DatePicker
               className="w-100 border rounded pl-2 pt-1 pb-1 text-muted input-field-grey-border input-field-height"
               wrapperClassName="w-100"
-              placeholderText="Select date..."
+              placeholderText="Date"
               selected={date}
               onChange={addDate}
             />

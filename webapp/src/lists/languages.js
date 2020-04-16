@@ -1,5 +1,4 @@
 const Language = [
-  "-- None --",
   "Arabic",
   "Brazilian Portuguese",
   "Czech",

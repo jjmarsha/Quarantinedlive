@@ -16,6 +16,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ParseUTCToBackend } from "../../lists/daterefs";
 import axios from "axios";
+import "../../styles/common.css";
 
 /*
     I made the horrible mistake of writing this as a functional component
@@ -35,12 +36,14 @@ const EntryForm = (props) => {
   const [topic3, setTopic3] = useState(undefined);
   const [type, setType] = useState("");
   const [link, setLink] = useState("");
-  const [language, setLanguage] = useState(undefined);
+  const [language, setLanguage] = useState("English");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("00:00");
   const [description, setDescription] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(undefined);
+
+  const [addImageToggle, setAddImageToggle] = useState(false);
 
   const [titleError, setTitleError] = useState(false);
   const [hostnameError, setHostNameError] = useState(false);
@@ -140,6 +143,7 @@ const EntryForm = (props) => {
           <FormGroup>
             <Input
               type="email"
+              className="text-muted"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -150,17 +154,17 @@ const EntryForm = (props) => {
         </Col>
       </Row>
       <Row>
-        <Col md="4">
+        <Col md="12">
           <FormGroup>
             <CustomDropdown
               list={Topics}
-              placeholder="Topics..."
+              placeholder="Topic"
               onChange={(e) => setTopic1(e.target.value)}
               value={topic1}
             />
           </FormGroup>
         </Col>
-        <Col md="4">
+        {/* <Col md="4">
           <FormGroup>
             <CustomDropdown
               list={Topics}
@@ -179,22 +183,22 @@ const EntryForm = (props) => {
               value={topic3}
             />
           </FormGroup>
-        </Col>
+        </Col> */}
       </Row>
-      <FormGroup>
+      {/* <FormGroup>
         <Input
           placeholder="Type of Event"
           className=""
           onChange={(e) => setType(e.target.value)}
           value={type}
         />
-      </FormGroup>
+      </FormGroup> */}
       <Row>
-        <Col md="7">
+        <Col md="12">
           <FormGroup>
             <Input
-              placeholder="Link to the event..."
-              className=""
+              placeholder="Link to the event"
+              className="text-muted"
               onChange={(e) => setLink(e.target.value)}
               value={link}
               invalid={linkError}
@@ -202,17 +206,9 @@ const EntryForm = (props) => {
             <FormFeedback>Please provide a link to the event</FormFeedback>
           </FormGroup>
         </Col>
-        <Col md="5">
-          <Input
-            type="text"
-            placeholder="Link to an image..."
-            onChange={(e) => setImage(e.target.value)}
-            value={image}
-          />
-        </Col>
       </Row>
       <Row>
-        <Col md="4" xs="12">
+        <Col xs="6" md="4">
           <FormGroup>
             <DatePicker
               id="date-picker"
@@ -221,27 +217,16 @@ const EntryForm = (props) => {
                 (dateError ? "border-danger" : "input-field-grey-border")
               }
               wrapperClassName="w-100"
-              placeholderText="Select date..."
+              autoComplete="off"
+              placeholderText="Select date"
               selected={date}
               onChange={(date) => setDate(date)}
             />
-            <Input hidden invalid={dateError} />
+            <Input hidden invalid={dateError} autocomplete="off" />
             <FormFeedback>Select a date</FormFeedback>
           </FormGroup>
         </Col>
-        <Col md="4">
-          <FormGroup>
-            <CustomDropdown
-              list={Language}
-              placeholder="Languages..."
-              invalid={languageError}
-              onChange={(e) => setLanguage(e.target.value)}
-            />
-            <Input hidden invalid={languageError} />
-            <FormFeedback>Select a language</FormFeedback>
-          </FormGroup>
-        </Col>
-        <Col md="4">
+        <Col xs="6" md="4">
           <FormGroup>
             <Input
               type="time"
@@ -250,6 +235,19 @@ const EntryForm = (props) => {
               value={time}
               onChange={(e) => setTime(e.target.value)}
             />
+          </FormGroup>
+        </Col>
+        <Col xs="12" md="4">
+          <FormGroup>
+            <CustomDropdown
+              list={Language}
+              placeholder="Language"
+              invalid={languageError}
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            />
+            <Input hidden invalid={languageError} />
+            <FormFeedback>Select a language</FormFeedback>
           </FormGroup>
         </Col>
       </Row>
@@ -264,12 +262,40 @@ const EntryForm = (props) => {
         />
         <FormFeedback>Please provide a short description</FormFeedback>
       </FormGroup>
-      <div className="float-right">
+
+      <Row>
+        <Col sm="4" className="pt-2 h-100">
+          <div
+            className="mb-auto mt-auto hover-pointer"
+            onClick={() => setAddImageToggle(!addImageToggle)}
+          >
+            <i
+              className={
+                "fa text-primary " +
+                (addImageToggle ? "fa-minus-circle " : "fa-plus-circle")
+              }
+              style={{ fontSize: "15px" }}
+            />
+            &nbsp;&nbsp;Add Image
+          </div>
+        </Col>
+        {addImageToggle ? (
+          <Col md="8" className="h-100">
+            <Input
+              type="text"
+              placeholder="Link to an image"
+              onChange={(e) => setImage(e.target.value)}
+              value={image}
+            />
+          </Col>
+        ) : null}
+      </Row>
+      <div className="float-right pt-3">
         <Button className="mr-1" onClick={props.modalToggle}>
           Cancel
         </Button>
         <Button color="primary" onClick={submitForm}>
-          Submit Event
+          Qioo it!
         </Button>
       </div>
     </Form>

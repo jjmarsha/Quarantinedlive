@@ -13,6 +13,7 @@ const CustomDropdown = ({ list, onChange, placeholder, value, invalid }) => {
         height: "calc(1.5em + .75rem + 2px)",
         border: "1px solid",
         borderColor: invalid ? "#dc3545" : "#ced4da",
+        backgroundColor: "white",
       }}
       value={value}
       onChange={onChange}

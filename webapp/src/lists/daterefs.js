@@ -33,18 +33,37 @@ export const Months = {
     name: "June",
     num: 6,
   },
-  Jul: { name: "July", num: 7 },
-  Aug: { name: "August", num: 8 },
-  Sep: { name: "September", num: 9 },
-  Oct: { name: "October", num: 10 },
-  Nov: { name: "November", num: 11 },
-  Dec: { name: "December", num: 12 },
+  Jul: {
+    name: "July",
+    num: 7,
+  },
+  Aug: {
+    name: "August",
+    num: 8,
+  },
+  Sep: {
+    name: "September",
+    num: 9,
+  },
+  Oct: {
+    name: "October",
+    num: 10,
+  },
+  Nov: {
+    name: "November",
+    num: 11,
+  },
+  Dec: {
+    name: "December",
+    num: 12,
+  },
 };
 
 const DayMap = new Map(Object.entries(Days));
 const MonthMap = new Map(Object.entries(Months));
 
 export const ParseDateString = (date) => {
+  if (!date) return "";
   const attributes = date.split(" ");
   let parsedDate = "";
   let monthlyDate = attributes[2];
@@ -107,3 +126,5 @@ export const ParseUTCToBackend = (date, time) => {
   const parsedDate = `${month}/${day}/${year} ${parsedTime}`;
   return parsedDate;
 };
+
+export const ComputeDateDifference = (date1, dat2) => {};

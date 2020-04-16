@@ -29,27 +29,50 @@ class Homepage extends React.Component {
 
   async componentDidMount() {
     await this.GetEntries();
+    const searchParams = this.props.history.location.search;
     this.setState({
       loadingComponents: true,
-      currURL: this.props.history.location.search,
+      currURL: searchParams ? searchParams : "",
     });
   }
 
   async componentDidUpdate() {
-    const currURL = this.props.history.location.search;
+    const currURL = this.props.history.location.search
+      ? this.props.history.location.search
+      : "";
+
+    // console.log(this.state.currURL === currURL);
     if (currURL !== this.state.currURL) {
-      await this.GetEntries();
+      await this.SearchEntries(currURL);
+      this.setState({ currURL: currURL });
     }
   }
 
   GetEntries = async (url) => {
     // const params = GetURLParams();
     // let keywords;
-    // if(params.keywords) keywords = params.keywords.split(",");
-    // Make the ajax call here
-    axios
-      .get("https://quarantined.azurewebsites.net/api/Event/")
+    // if (params.keywords) keywords = params.keywords.split(",");
+    // console.log(params);
+    await axios
+      .get(`https://quarantined.azurewebsites.net/api/Event/`)
       .then((resp) => {
+        // console.log(resp.data);
+        this.setState({ entries: resp.data });
+      });
+  };
+
+  SearchEntries = async (url) => {
+    // const params = GetURLParams();
+    const keywords = url.substring("?keywords=".length);
+    console.log(keywords);
+    // if (params.keywords) keywords = params.keywords.split(",");
+    // console.log(params.keywords);
+    await axios
+      .get(
+        `https://quarantined.azurewebsites.net/api/EventSearch/title/?keywords=${keywords}`
+      )
+      .then((resp) => {
+        console.log(resp.data);
         this.setState({ entries: resp.data });
       });
   };
@@ -57,11 +80,15 @@ class Homepage extends React.Component {
   render() {
     return (
       <Page>
-        <Navigation modalToggle={this.modalToggle} isMobile={isMobile} />
+        <Navigation
+          modalToggle={this.modalToggle}
+          isMobile={isMobile}
+          titleHeader="Discover and Share your Favorite Online Events"
+        />
         <TrendingSection modalToggle={this.modalToggle} isMobile={isMobile} />
         <Row>
           <Col xs="0" md="3">
-            <Filter />
+            <Filter isMobile={isMobile} modalToggle={this.modalToggle} />
           </Col>
           <Col xs="12" md="9">
             <EntryList isMobile={isMobile} entrylist={this.state.entries} />
