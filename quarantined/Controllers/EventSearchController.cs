@@ -32,24 +32,49 @@ namespace quarantined.Controllers
         {
             var Search = _EventServiceAgent.GetAll();
             var filter = new List<EventBody>();
-            switch (mode)
+            if (!keywords.Contains(","))
             {
-                case "title":
-                    filter = Search.Where(o => o.title == keywords).ToList();
-                    break;
-                case "category":
-                    filter = Search.Where(o => o.category == keywords).ToList();
-                    break;
-                case "emailhost":
-                    filter = Search.Where(o => o.email_of_host == keywords).ToList();
-                    break;
-                case "language":
-                    filter = Search.Where(o => o.language == keywords).ToList();
-                    break;
-                default:
-                    return BadRequest("Mode not found");
-    
+                switch (mode)
+                {
+                    case "title":
+                        filter = Search.Where(o => o.title == keywords).ToList();
+                        break;
+                    case "category":
+                        filter = Search.Where(o => o.category == keywords).ToList();
+                        break;
+                    case "emailhost":
+                        filter = Search.Where(o => o.email_of_host == keywords).ToList();
+                        break;
+                    case "language":
+                        filter = Search.Where(o => o.language == keywords).ToList();
+                        break;
+                    default:
+                        return BadRequest("Mode not found");
+                }
             }
+            else
+            {
+                var tosearch = keywords.Split(",");
+                switch (mode)
+                {
+                    case "title":
+                        filter = Search.Where(o => tosearch.Contains(o.title)).ToList();
+                        break;
+                    case "category":
+                        filter = Search.Where(o => tosearch.Contains(o.category)).ToList();
+                        break;
+                    case "emailhost":
+                        filter = Search.Where(o => tosearch.Contains(o.email_of_host)).ToList();
+                        break;
+                    case "language":
+                        filter = Search.Where(o => tosearch.Contains(o.language)).ToList();
+                        break;
+                    default:
+                        return BadRequest("Mode not found");
+                }
+            }
+
+
             return Ok(filter);
         }
 
