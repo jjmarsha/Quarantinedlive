@@ -18,12 +18,8 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/" exact>
-          <Homepage />
-        </Route>
-        <Route path="/view/:id">
-          <EntryView />
-        </Route>
+        <Route path="/" exact component={Homepage} />
+        <Route path="/view/:id" component={EntryView} />
       </Switch>
     </div>
   );
