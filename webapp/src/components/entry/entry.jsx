@@ -9,7 +9,7 @@ import {
 } from "../../lists/daterefs";
 
 const Entry = ({ entry, className, onClick, isMobile, history }) => {
-  const [live, setLive] = React.useState(<div className="entry-live"></div>);
+  const [live, setLive] = React.useState(undefined);
 
   useEffect(() => {
     const entryDate = new Date(entry.time + " UTC");
@@ -17,18 +17,36 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
     const timeDifference = entryDate.getTime() - currDate.getTime();
     if (timeDifference <= 3600000 && timeDifference >= -1200000) {
       // If within an hour
-      setLive(
-        <div className="bg-success entry-live entry-live-border">
-          <div className="text-rotated live">LIVE</div>
-        </div>
-      );
+      if (!isMobile) {
+        setLive(
+          <div className="bg-success entry-live entry-live-border">
+            <div className="text-rotated live">LIVE</div>
+          </div>
+        );
+      } else {
+        setLive(
+          <div className="bg-success entry-live-mobile entry-live-border" />
+        );
+      }
     } else if (timeDifference <= 86400000 && timeDifference >= 0) {
       // If within 24 hours
-      setLive(
-        <div className="bg-warning entry-live entry-live-border">
-          <div className="text-rotated soon">SOON</div>
-        </div>
-      );
+      if (!isMobile) {
+        setLive(
+          <div className="bg-warning entry-live entry-live-border">
+            <div className="text-rotated soon">SOON</div>
+          </div>
+        );
+      } else {
+        setLive(
+          <div className="bg-warning entry-live-mobile entry-live-border" />
+        );
+      }
+    } else {
+      if (!isMobile) {
+        setLive(<div className="entry-live"></div>);
+      } else {
+        setLive(<div className="entry-live-mobile"></div>);
+      }
     }
   }, []);
 
@@ -47,8 +65,8 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
   if (isMobile) {
     return (
       <div className={"entry-mobile " + className} onClick={redirectEntryView}>
+        {live}
         <Row className="h-100">
-          <Col xs="1" className="m-auto text-right"></Col>
           <Col
             xs="10"
             className="h-100 m-auto text-left d-flex align-content-between flex-wrap"

@@ -55,6 +55,12 @@
   height: 100%;
 }
 
+.entry-live-mobile {
+  float: left;
+  width: 10px;
+  height: 100%;
+}
+
 .entry-live-border {
   border-right: solid 1px #949494;
 }
