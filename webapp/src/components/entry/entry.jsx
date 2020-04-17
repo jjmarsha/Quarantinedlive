@@ -89,30 +89,40 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
         <Col md="12">
           <Row className="pb-2 pt-2">
             <Col md="12">
-              <p className="entry-text font-weight-normal text-truncate">
+              <p
+                className="entry-text text-truncate"
+                style={{ fontWeight: 500 }}
+              >
                 {entry.title}
               </p>
             </Col>
           </Row>
-          <Row className={"entry-info" + className}>
-            <Col md="3" className="m-auto">
-              <p className="entry-text" style={{ fontSize: "13px" }}>
-                {entry.nameofhost}
-              </p>
-            </Col>
-            <Col md="4" className="m-auto entry-text-small">
-              {ParseDate()}
-            </Col>
-            <Col
-              md="4"
-              className="mt-auto mb-auto pl-0 entry-text-small text-left"
-            >
-              Topics(s):&nbsp;
-              {entry.topics
-                ? entry.topics.map((topic, key) => {
-                    return <>{(key === 0 ? "" : ", ") + topic}</>;
-                  })
-                : null}
+          <Row>
+            <Col md="12">
+              <Row className={"entry-info" + className}>
+                <Col md="3" className="m-auto">
+                  <p
+                    className="entry-text text-right"
+                    style={{ fontSize: "13px" }}
+                  >
+                    {entry.nameofhost}
+                  </p>
+                </Col>
+                <Col md="6" className="m-auto entry-text-small">
+                  {ParseDate()}
+                </Col>
+                <Col
+                  md="3"
+                  className="mt-auto mb-auto pl-0 entry-text-small text-left"
+                >
+                  Topic:&nbsp;
+                  {entry.topics
+                    ? entry.topics.map((topic, key) => {
+                        return <>{(key === 0 ? "" : ", ") + topic}</>;
+                      })
+                    : null}
+                </Col>
+              </Row>
             </Col>
           </Row>
         </Col>
