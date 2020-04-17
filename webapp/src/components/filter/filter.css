@@ -1,0 +1,17 @@
+.filter-container {
+}
+
+.filter-container-mobile {
+  height: 0px;
+  padding-bottom: 55px;
+  overflow-y: hidden;
+  /* transition: all ease-in-out 1s; */
+}
+
+.filter-container-mobile-open {
+  height: 100%;
+}
+
+.button-filters {
+  height: 28px;
+}
