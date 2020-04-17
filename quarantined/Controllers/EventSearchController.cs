@@ -30,6 +30,8 @@ namespace quarantined.Controllers
         [HttpGet("{mode}", Name = "GetSearch")]
         public async Task<IActionResult> Get(string mode, [FromQuery] string keywords)
         {
+            var tokill = "as, I, his, that, he, was, for, on, are, with, they, be, at, one, have, this, from, by, but, what, some, is, it, you, or, had, the, of, to, and, a, in, we, can, were, which, do, their, if, will, how, said, an, each";
+            var arr = tokill.Split(",");
             var Search = _EventServiceAgent.GetAll();
             var filter = new List<EventBody>();
             if (!keywords.Contains(","))
@@ -37,16 +39,16 @@ namespace quarantined.Controllers
                 switch (mode)
                 {
                     case "title":
-                        filter = Search.Where(o => o.title == keywords).ToList();
+                        filter = Search.Where(o => o.title.Contains(keywords)).ToList();
                         break;
                     case "category":
-                        filter = Search.Where(o => o.category == keywords).ToList();
+                        filter = Search.Where(o => o.category.Contains(keywords)).ToList();
                         break;
                     case "emailhost":
-                        filter = Search.Where(o => o.email_of_host == keywords).ToList();
+                        filter = Search.Where(o => o.email_of_host.Contains(keywords)).ToList();
                         break;
                     case "language":
-                        filter = Search.Where(o => o.language == keywords).ToList();
+                        filter = Search.Where(o => o.language.Contains(keywords)).ToList();
                         break;
                     default:
                         return BadRequest("Mode not found");
