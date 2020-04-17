@@ -28,8 +28,10 @@ class Homepage extends React.Component {
   }
 
   async componentDidMount() {
-    await this.GetEntries();
     const searchParams = this.props.history.location.search;
+    searchParams
+      ? await this.SearchEntries(searchParams)
+      : await this.GetEntries();
     this.setState({
       loadingComponents: true,
       currURL: searchParams ? searchParams : "",
@@ -64,7 +66,7 @@ class Homepage extends React.Component {
   SearchEntries = async (url) => {
     // const params = GetURLParams();
     const keywords = url.substring("?keywords=".length);
-    console.log(keywords);
+    // console.log(keywords);
     // if (params.keywords) keywords = params.keywords.split(",");
     // console.log(params.keywords);
     await axios
@@ -72,7 +74,7 @@ class Homepage extends React.Component {
         `https://quarantined.azurewebsites.net/api/EventSearch/title/?keywords=${keywords}`
       )
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         this.setState({ entries: resp.data });
       });
   };

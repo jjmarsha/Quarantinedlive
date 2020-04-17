@@ -67,6 +67,7 @@ export const ParseDateString = (date) => {
   const attributes = date.split(" ");
   let parsedDate = "";
   let monthlyDate = attributes[2];
+  if (!monthlyDate) return;
   if (monthlyDate[0] === "0") monthlyDate = monthlyDate[1];
   parsedDate +=
     DayMap.get(attributes[0]) +
@@ -80,6 +81,7 @@ export const ParseDateString = (date) => {
 };
 
 export const ParseTimeString = (time) => {
+  if (!time) return;
   const attributes = time.split(":");
   const hours = Number(attributes[0]);
   const minutes = Number(attributes[1]);
