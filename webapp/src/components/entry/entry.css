@@ -5,6 +5,7 @@
   border: solid 1px #949494;
   padding-top: 0px !important;
   overflow: hidden;
+  background-color: white;
 }
 
 .entry-mobile {
@@ -13,6 +14,7 @@
   color: #575656;
   border: solid 1px #bbbbbb;
   box-shadow: 2px 2px 2px 2px rgba(204, 204, 204, 0.2);
+  background-color: white;
 }
 
 .entry-info {

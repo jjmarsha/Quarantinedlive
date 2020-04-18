@@ -49,7 +49,7 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
         setLive(<div className="entry-live-mobile"></div>);
       }
     }
-  }, []);
+  }, [entry]);
 
   const redirectEntryView = () => {
     history.push(`/view/${entry.id}`);
