@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Button } from "reactstrap";
 import Tag from "../tag/tag";
 import Topics from "../../lists/topics";
@@ -9,12 +9,21 @@ const TrendingSection = (props) => {
   const filters = useSelector((state) => state.filters.filters);
   const dispatchFilters = useDispatch();
 
-  const addFilter = (event) => {
+  const toggleFilter = (event) => {
     const filterName = event.currentTarget.title;
     const filtersList = filters;
     if (!filtersList.includes(filterName)) {
       filtersList.push(filterName);
       dispatchFilters(SetFilters(filtersList));
+    } else {
+      for (let i = 0; i < filtersList.length; ++i) {
+        if (filtersList[i] === filterName) {
+          filtersList[i] = filtersList[filtersList.length - 1];
+          filtersList.pop();
+          dispatchFilters(SetFilters(filtersList));
+          break;
+        }
+      }
     }
   };
 
@@ -34,12 +43,15 @@ const TrendingSection = (props) => {
           {Topics.map((topics, key) => {
             if ((!props.isMobile && key > 7) || (props.isMobile && key > 5))
               return null;
+            console.log(topics);
+            console.log(filters.includes(topics));
             return (
               <div className="mt-auto mb-auto p-1" key={key}>
                 <Tag
                   placename={topics}
-                  onClick={addFilter}
-                  className="tag-normal"
+                  onClick={toggleFilter}
+                  className={props.isMobile ? "tag-stick" : "tag-normal"}
+                  isMobile={props.isMobile}
                 />
               </div>
             );
