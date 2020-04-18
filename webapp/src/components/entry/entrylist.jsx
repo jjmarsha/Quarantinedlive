@@ -43,7 +43,17 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
     newEntryList.sort((a, b) => {
       if (a.time) return new Date(a.time) - new Date(b.time);
     });
-    setEntries(newEntryList);
+
+    const today = new Date();
+    const withRemovedDates = [];
+    for (const element of newEntryList) {
+      if (new Date(element.time + " UTC").getTime() >= today.getTime()) {
+        withRemovedDates.push(element);
+        // console.log(new Date(element.time));
+      }
+    }
+
+    setEntries(withRemovedDates);
   }, [entrylist, filters, dateFilter, language]);
 
   const CompareDate = (date) => {

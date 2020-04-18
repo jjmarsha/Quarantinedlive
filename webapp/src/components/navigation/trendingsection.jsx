@@ -44,8 +44,6 @@ const TrendingSection = (props) => {
           {Topics.map((topics, key) => {
             if ((!props.isMobile && key > 7) || (props.isMobile && key > 5))
               return null;
-            console.log(topics);
-            console.log(filters.includes(topics));
             return (
               <div className="mt-auto mb-auto p-1" key={key}>
                 <Tag
