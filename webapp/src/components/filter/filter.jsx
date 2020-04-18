@@ -111,7 +111,7 @@ const Filter = (props) => {
             <>
               <Col xs="4" className="mt-auto mb-auto">
                 <Button
-                  className=" d-flex align-items-center"
+                  className=" d-flex align-items-center color-green"
                   onClick={() => setfilterButtonState(!filterButtonState)}
                 >
                   <div>
