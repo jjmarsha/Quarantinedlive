@@ -24,13 +24,14 @@ class Homepage extends React.Component {
       loadingComponents: true,
       entries: [],
       currURL: "",
+      searchedEntries: [],
     };
   }
 
   async componentDidMount() {
     const searchParams = this.props.history.location.search;
     searchParams
-      ? await this.SearchEntries(searchParams)
+      ? (await this.GetEntries()) && (await this.SearchEntries(searchParams))
       : await this.GetEntries();
     this.setState({
       loadingComponents: true,
@@ -45,8 +46,8 @@ class Homepage extends React.Component {
 
     // console.log(this.state.currURL === currURL);
     if (currURL !== this.state.currURL) {
-      await this.SearchEntries(currURL);
       this.setState({ currURL: currURL });
+      await this.SearchEntries(currURL);
     }
   }
 
@@ -59,24 +60,51 @@ class Homepage extends React.Component {
       .get(`https://quarantined.azurewebsites.net/api/Event/`)
       .then((resp) => {
         // console.log(resp.data);
-        this.setState({ entries: resp.data });
+        this.setState({ entries: resp.data, searchedEntries: resp.data });
       });
   };
 
   SearchEntries = async (url) => {
     // const params = GetURLParams();
     const keywords = url.substring("?keywords=".length);
+    let keywordList = [];
+    const newEntries = [];
+    if (keywords) keywordList = keywords.split(",");
+    if (keywordList.length === 0) {
+      this.setState((prevState) => {
+        return {
+          ...prevState,
+          searchedEntries: prevState.entries,
+        };
+      });
+      return;
+    }
+    for (const keyword in keywordList) {
+      keywordList[keyword] = keywordList[keyword].toLowerCase();
+    }
+    let stuffFound = false;
+    for (const element in this.state.entries) {
+      const titleWords = this.state.entries[element].title.split(" ");
+      for (const word in titleWords) {
+        if (keywordList.includes(titleWords[word].toLowerCase())) {
+          stuffFound = true;
+          newEntries.push(this.state.entries[element]);
+          break;
+        }
+      }
+    }
+    this.setState({ searchedEntries: newEntries });
     // console.log(keywords);
     // if (params.keywords) keywords = params.keywords.split(",");
     // console.log(params.keywords);
-    await axios
-      .get(
-        `https://quarantined.azurewebsites.net/api/EventSearch/title/?keywords=${keywords}`
-      )
-      .then((resp) => {
-        // console.log(resp.data);
-        this.setState({ entries: resp.data });
-      });
+    // await axios
+    //   .get(
+    //     `https://quarantined.azurewebsites.net/api/EventSearch/title/?keywords=${keywords}`
+    //   )
+    //   .then((resp) => {
+    //     // console.log(resp.data);
+    //     this.setState({ entries: resp.data });
+    //   });
   };
 
   render() {
@@ -93,7 +121,10 @@ class Homepage extends React.Component {
             <Filter isMobile={isMobile} modalToggle={this.modalToggle} />
           </Col>
           <Col xs="12" md="9">
-            <EntryList isMobile={isMobile} entrylist={this.state.entries} />
+            <EntryList
+              isMobile={isMobile}
+              entrylist={this.state.searchedEntries}
+            />
           </Col>
         </Row>
         <Modal isOpen={this.state.modalIsOpen} toggle={this.modalToggle}>
