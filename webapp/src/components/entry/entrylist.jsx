@@ -47,7 +47,10 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
     const today = new Date();
     const withRemovedDates = [];
     for (const element of newEntryList) {
-      if (new Date(element.time + " UTC").getTime() >= today.getTime()) {
+      if (
+        new Date(element.time + " UTC").getTime() >=
+        today.getTime() - 1200000
+      ) {
         withRemovedDates.push(element);
         // console.log(new Date(element.time));
       }

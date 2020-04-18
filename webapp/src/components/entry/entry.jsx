@@ -122,7 +122,7 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
               <Row className={"entry-info" + className}>
                 <Col md="3" className="m-auto">
                   <p
-                    className="entry-text text-right text-truncate"
+                    className="entry-text text-left text-truncate"
                     style={{ fontSize: "13px" }}
                   >
                     {"Host: " + entry.nameofhost}
@@ -133,7 +133,7 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
                 </Col>
                 <Col
                   md="3"
-                  className="mt-auto mb-auto pl-0 entry-text-small text-left"
+                  className="mt-auto mb-auto pl-0 entry-text-small text-right"
                 >
                   Topic:&nbsp;
                   {entry.topics
