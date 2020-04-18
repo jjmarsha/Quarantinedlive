@@ -38,7 +38,7 @@ const EntryList = ({ isMobile, entrylist, filters, dateFilter, language }) => {
         }
       }
     } else {
-      newEntryList = entrylist;
+      newEntryList = entrylist ? entrylist : [];
     }
     newEntryList.sort((a, b) => {
       if (a.time) return new Date(a.time) - new Date(b.time);
