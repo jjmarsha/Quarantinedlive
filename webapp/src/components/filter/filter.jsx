@@ -23,6 +23,7 @@ import {
 import { ParseUTCToBackend } from "../../lists/daterefs";
 import CustomDropdown from "./dropdown";
 import "../../styles/formfields.css";
+import "../../styles/colors.css";
 
 const modifiers = {
   setMaxHeight: {
@@ -125,7 +126,7 @@ const Filter = (props) => {
               <Col xs="5" className="d-flex justify-content-end">
                 <Button
                   onClick={props.modalToggle}
-                  className="float-right mt-auto mb-auto"
+                  className="float-right mt-auto mb-auto  color-green"
                 >
                   Add New &nbsp;
                   <i className="fa fa-plus" />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, InputGroup, InputGroupAddon, Button, Input } from "reactstrap";
 import "../../styles/formfields.css";
 import { withRouter } from "react-router-dom";
+import "../../styles/colors.css";
 
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
@@ -25,7 +26,7 @@ const SearchBar = (props) => {
             onChange={(e) => setSearch(e.target.value)}
           />
           <InputGroupAddon addonType="append">
-            <Button onClick={submitSearch}>
+            <Button onClick={submitSearch} className="color-green">
               <i className="fa fa-search" />
             </Button>
           </InputGroupAddon>

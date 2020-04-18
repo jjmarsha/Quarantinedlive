@@ -7,6 +7,7 @@ import {
   ParseTimeString,
   ParseDateTimeToUTC,
 } from "../../lists/daterefs";
+import "../../styles/colors.css";
 
 const Entry = ({ entry, className, onClick, isMobile, history }) => {
   const [live, setLive] = React.useState(undefined);
@@ -19,20 +20,20 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
       // If within an hour
       if (!isMobile) {
         setLive(
-          <div className="bg-success entry-live entry-live-border">
+          <div className="color-green entry-live entry-live-border">
             <div className="text-rotated live">LIVE</div>
           </div>
         );
       } else {
         setLive(
-          <div className="bg-success entry-live-mobile entry-live-border" />
+          <div className="color-green entry-live-mobile entry-live-border" />
         );
       }
     } else if (timeDifference <= 86400000 && timeDifference >= 0) {
       // If within 24 hours
       if (!isMobile) {
         setLive(
-          <div className="bg-warning entry-live entry-live-border">
+          <div className="bg-warning entry-live entry-live-border ">
             <div className="text-rotated soon">SOON</div>
           </div>
         );
@@ -72,20 +73,21 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
             className="h-100 m-auto text-left d-flex align-content-between flex-wrap"
           >
             <p
-              className="mt-2 entry-text w-100 d-flex align-items-end"
+              className="mt-4 h-70 entry-text d-flex align-items-end overflow-hidden"
               style={{ fontSize: "20px", fontWeight: 600 }}
             >
-              <div>{entry.title}</div>
+              {entry.title.substring(0, 60) +
+                (entry.title.length > 59 ? "..." : "")}
             </p>
-            <div className="h-30 pt-0">
+            <div className="h-30 pt-0 w-100">
               <p className="entry-text font-weight-normal text-truncate w-100">
-                {entry.nameofhost}
+                {"Host: " + entry.nameofhost}
               </p>
               <p className="entry-text font-weight-normal text-truncate w-100">
                 {ParseDate()}
               </p>
               <p className="mb-2">
-                Topics(s):&nbsp;
+                Topic:&nbsp;
                 {entry.topics
                   ? entry.topics.map((topic, key) => {
                       return <>{(key === 0 ? "" : ", ") + topic}</>;
@@ -120,13 +122,13 @@ const Entry = ({ entry, className, onClick, isMobile, history }) => {
               <Row className={"entry-info" + className}>
                 <Col md="3" className="m-auto">
                   <p
-                    className="entry-text text-right"
+                    className="entry-text text-right text-truncate"
                     style={{ fontSize: "13px" }}
                   >
-                    {entry.nameofhost}
+                    {"Host: " + entry.nameofhost}
                   </p>
                 </Col>
-                <Col md="6" className="m-auto entry-text-small">
+                <Col md="6" className="m-auto entry-text-small ">
                   {ParseDate()}
                 </Col>
                 <Col

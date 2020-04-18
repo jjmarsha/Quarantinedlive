@@ -4,6 +4,7 @@ import Tag from "../tag/tag";
 import Topics from "../../lists/topics";
 import { useDispatch, useSelector } from "react-redux";
 import { SetFilters } from "../../actions/index";
+import "../../styles/colors.css";
 
 const TrendingSection = (props) => {
   const filters = useSelector((state) => state.filters.filters);
@@ -62,7 +63,7 @@ const TrendingSection = (props) => {
         <Col xs="0" md="12" lg="2" className="d-flex justify-content-end">
           <Button
             onClick={props.modalToggle}
-            className="float-right mt-auto mb-auto"
+            className="float-right mt-auto mb-auto color-green"
           >
             Add New &nbsp;
             <i className="fa fa-plus" />
